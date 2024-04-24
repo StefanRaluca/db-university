@@ -11,37 +11,37 @@ per ogni appello d'Esame a cui lo Studente ha partecipato, è necessario memoriz
 
 
 
-### Dipartimenti
+### departments
 - id BIGINT | UNIQUE | AI | PK | INDEX | 
-- nome VARCHAR(25) | NOTNULL
-### Corsi di Laurea
+- name VARCHAR(25) | NOTNULL
+### degree_courses
 - id BIGINT | UNIQUE | AI | PK | INDEX
-- nome VARCHAR(40) | NOTNULL
-- id_dipartimento FK | BIGINT | 
-### Corsi
+- name VARCHAR(40) | NOTNULL
+- id_department FK | BIGINT | 
+### courses
 - id BIGINT | UNIQUE | AI | PK | INDEX
-- nome_corso VARCHAR(40) | NOTNULL
-- id_corso_laurea FK | BIGINT 
-- indirizzo_fisico VARCHAR(100) | NULL
-### Insegnanti
+- name_course VARCHAR(40) | NOTNULL
+- id_degree_courses FK | BIGINT 
+- address VARCHAR(100) | NULL
+### teachers
 - id BIGINT | UNIQUE | AI | PK | INDEX
-- nome VARCHAR(25) | NOTNULL
-- cognome VARCHAR(25) | NOTNULL
-- cf CHAR(16) | NULL
-- id_corso FK | BIGINT | 
-### Appelli
+- name VARCHAR(25) | NOTNULL
+- lastname VARCHAR(25) | NOTNULL
+- cfu CHAR(16) | NULL
+- id_course FK | BIGINT | 
+### exam_calls
 - id BIGINT | UNIQUE | AI | PK | INDEX
-- id_corso FK | BIGINT 
-- materia VARCHAR(25) | NOTNULL
-- data DATATIME | NOTNULL
-### Studenti
+- id_course FK | BIGINT 
+- subject VARCHAR(25) | NOTNULL
+- date DATATIME | NOTNULL
+### students
 - id BIGINT | UNIQUE | AI | PK | INDEX
-- Nome VARCHAR(25) | NOTNULL
-- Cognome VARCHAR(25) | NOTNULL
-- id_corso_laurea FK | BIGINT 
-- foto VARCHAR(255) | NULL
-### Iscrizione Esami
+- name VARCHAR(25) | NOTNULL
+- lastname VARCHAR(25) | NOTNULL
+- id_degree_corse FK | BIGINT 
+- photo VARCHAR(255) | NULL
+### registration_exams
 - id BIGINT | UNIQUE | AI | PK | INDEX
-- id_appello FK | BIGINT 
-- id_studente FK | BIGINT 
-- voto TINYINT | NOTNULL
+- id_exam_calls FK | BIGINT 
+- id_student FK | BIGINT 
+- vote TINYINT | NOTNULL
