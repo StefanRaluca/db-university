@@ -44,5 +44,11 @@
  # soluzione : SELECT students.name, students.surname, degrees.name AS degree_name, departments.name AS department_name FROM students JOIN degrees ON students.degree_id = degrees.id JOIN departments ON degrees.department_id = departments.id ORDER BY students.surname, students.name;
   -  Mostro le righe 0 - 24 (5000 del totale, La query ha impiegato 0,0357 secondi.) [surname: AMATO... - AMATO...] [name: BRIGITTA... - MANFREDI...]
 ### 5. Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti
- # soluzione : SELECT degrees.name AS degree_name, courses.name AS course_name, teachers.name AS teacher_name, teachers.surname AS teacher_surname FROM degrees JOIN courses ON degrees.id = courses.degree_id JOIN course_teacher ON courses.id = course_teacher.course_id JOIN teachers ON course_teacher.teacher_id = teachers.id ORDER BY degrees.name, courses.name;
-  - Mostro le righe 0 - 24 (1317 del totale, La query ha impiegato 0,0197 secondi.)
+  # soluzione : SELECT degrees.name AS degree_name, courses.name AS course_name, teachers.name AS teacher_name, teachers.surname AS teacher_surname FROM degrees JOIN courses ON degrees.id = courses.degree_id JOIN course_teacher ON courses.id = course_teacher.course_id JOIN teachers ON course_teacher.teacher_id = teachers.id; 
+   - Mostro le righe 0 - 24 (1317 del totale, La query ha impiegato 0,0085 secondi.)
+### 6. Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica
+  # soluzione : SELECT DISTINCT teachers.* FROM teachers JOIN course_teacher ON teachers.id = course_teacher.teacher_id JOIN courses ON course_teacher.course_id = courses.id JOIN degrees ON courses.degree_id = degrees.id JOIN departments ON degrees.department_id = departments.id WHERE departments.name = 'Dipartimento di Matematica';
+   -  Mostro le righe 0 - 24 (54 del totale, La query ha impiegato 0,0028 secondi.)
+### 8. BONUS: Selezionare per ogni studente il numero di tentativi sostenuti per ogni esame, stampando anche il voto massimo. Successivamente, filtrare i tentativi con voto minimo 18.
+ # soluzione : SELECT student_id, exam_id, COUNT(exam_id) AS try_number, MAX(vote) AS max_vote FROM exam_student GROUP BY student_id, exam_id HAVING max_vote >= 18;
+  -  Mostro le righe 0 - 24 (21880 del totale, La query ha impiegato 0,0006 secondi.)
